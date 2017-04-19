@@ -78,6 +78,16 @@ app.put('/shopping-list/:id', jsonParser, (req, res) => {
   res.status(204).json(updatedItem);
 });
 
+app.put('/recipes/:id', jsonParser, (req, res) => {
+  console.log(`Updating recipe \`${req.params.id}\``);
+  const updatedItem = Recipes.update({
+    id: req.params.id,
+    name: req.body.name,
+    ingredients: req.body.ingredients
+  });
+  res.status(204).json(updatedItem);
+});
+
 // when DELETE request comes in with an id in path,
 // try to delete that item from ShoppingList.
 app.delete('/shopping-list/:id', (req, res) => {
